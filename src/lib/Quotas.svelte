@@ -10,6 +10,11 @@
   });
   let data = $state(exampleData);
   let search = $state("");
+  let loading = $state(true);
+
+  setTimeout(() => {
+    loading = false;
+  }, 3000);
 
   const handleSearch = (event: Event) => {
     const { value: search } = event.target as HTMLInputElement;
