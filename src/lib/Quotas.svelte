@@ -16,9 +16,9 @@
             type="text"
             name="search"
             id="search"
-            class="block min-w-0 grow px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6"
+            class="block min-w-0 grow rounded-s-md border-gray-300 px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6"
           />
-          <div class="flex py-1.5 pr-1.5">
+          <div class="flex p-1.5">
             <kbd
               class="inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400"
               >⌘K</kbd
