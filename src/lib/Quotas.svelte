@@ -1,5 +1,7 @@
 <script>
   import exampleData from "../data/quotas.json";
+  import { Icon } from "@steeze-ui/svelte-icon";
+  import { BarsArrowDown } from "@steeze-ui/heroicons";
 </script>
 
 <div class="overflow-hidden rounded-lg bg-white shadow">
@@ -33,18 +35,30 @@
                   <th
                     scope="col"
                     class="sticky top-0 z-10 border-b border-gray-300 bg-white/75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
-                    >Name</th
                   >
+                    <div class="flex cursor-pointer gap-2">
+                      <div>Name</div>
+                      <Icon src={BarsArrowDown} class="size-5"></Icon>
+                    </div>
+                  </th>
                   <th
                     scope="col"
                     class="sticky top-0 z-10 border-b border-gray-300 bg-white/75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
-                    >Status</th
                   >
+                    <div class="flex cursor-pointer gap-2">
+                      <div>Status</div>
+                      <Icon src={BarsArrowDown} class="size-5"></Icon>
+                    </div>
+                  </th>
                   <th
                     scope="col"
                     class="sticky top-0 z-10 border-b border-gray-300 bg-white/75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
-                    >Limit</th
                   >
+                    <div class="flex cursor-pointer gap-2">
+                      <div>Limit</div>
+                      <Icon src={BarsArrowDown} class="size-5"></Icon>
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
