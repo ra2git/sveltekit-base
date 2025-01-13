@@ -1,14 +1,23 @@
 <script lang="ts">
   import exampleData from "../data/quotas.json";
   import SortIcon from "./SortIcon.svelte";
+  import Fuse from "fuse.js";
 
   let sort = $state({ name: 0, status: 0, limit: 0 });
   let data = $state(exampleData);
   let search = $state("");
 
+  const fuse = new Fuse(exampleData, { keys: ["name"] });
+
   const handleSearch = (event: Event) => {
     const target = event.target as HTMLInputElement;
     search = target.value;
+    data =
+      search === ""
+        ? exampleData
+        : fuse.search(search).map((ele) => {
+            return ele.item;
+          });
   };
 </script>
 
