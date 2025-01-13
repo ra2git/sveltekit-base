@@ -17,7 +17,7 @@
     data = filterData(exampleData, search);
   };
 
-  const handleClick = (event: Event) => {
+  const handleSort = (event: Event) => {
     const { name } = event.currentTarget as HTMLButtonElement;
     sort = { ...sort, [name]: (sort[name] + 1) % 3 };
     data = sortData(data, sort);
@@ -61,7 +61,7 @@
                     <button
                       type="button"
                       class="flex cursor-pointer gap-2"
-                      onclick={handleClick}
+                      onclick={handleSort}
                       name="name"
                     >
                       <span>Name</span>
@@ -75,7 +75,7 @@
                     <button
                       type="button"
                       class="flex cursor-pointer gap-2"
-                      onclick={handleClick}
+                      onclick={handleSort}
                       name="is_enabled"
                     >
                       <span>Status</span>
@@ -89,7 +89,7 @@
                     <button
                       type="button"
                       class="flex cursor-pointer gap-2"
-                      onclick={handleClick}
+                      onclick={handleSort}
                       name="limit"
                     >
                       <span>Limit</span>
