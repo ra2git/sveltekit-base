@@ -3,6 +3,7 @@
   import SortIcon from "./SortIcon.svelte";
 
   let sort = $state({ name: 0, status: 0, limit: 0 });
+  let data = $state(exampleData);
 </script>
 
 <div class="overflow-hidden rounded-lg bg-white shadow">
@@ -39,7 +40,7 @@
                   >
                     <div
                       class="flex cursor-pointer gap-2"
-                      on:click={() => {
+                      onclick={() => {
                         sort = { ...sort, name: (sort.name + 1) % 3 };
                       }}
                     >
@@ -53,7 +54,7 @@
                   >
                     <div
                       class="flex cursor-pointer gap-2"
-                      on:click={() => {
+                      onclick={() => {
                         sort = { ...sort, status: (sort.status + 1) % 3 };
                       }}
                     >
@@ -67,7 +68,7 @@
                   >
                     <div
                       class="flex cursor-pointer gap-2"
-                      on:click={() => {
+                      onclick={() => {
                         sort = { ...sort, limit: (sort.limit + 1) % 3 };
                       }}
                     >
@@ -78,7 +79,7 @@
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-                {#each exampleData as quota}
+                {#each data as quota}
                   <tr id={quota.id}>
                     <td
                       class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500"
