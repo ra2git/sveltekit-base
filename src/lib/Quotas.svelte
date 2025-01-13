@@ -4,7 +4,7 @@
 
 <div class="overflow-hidden rounded-lg bg-white shadow">
   <div>
-    <div>
+    <div class="px-2">
       <label for="search" class="block text-sm/6 font-medium text-gray-900"
         >Quick search</label
       >
