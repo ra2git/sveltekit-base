@@ -12,8 +12,7 @@
   let search = $state("");
 
   const handleSearch = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    search = target.value;
+    const { value: search } = event.target as HTMLInputElement;
     data = filterData(exampleData, search);
   };
 
