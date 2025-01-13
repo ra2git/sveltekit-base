@@ -2,6 +2,8 @@
   import exampleData from "../data/quotas.json";
   import { Icon } from "@steeze-ui/svelte-icon";
   import { BarsArrowDown } from "@steeze-ui/heroicons";
+
+  let sort = $state({ name: 0, status: 0, limit: 0 });
 </script>
 
 <div class="overflow-hidden rounded-lg bg-white shadow">
@@ -36,7 +38,12 @@
                     scope="col"
                     class="sticky top-0 z-10 border-b border-gray-300 bg-white/75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
                   >
-                    <div class="flex cursor-pointer gap-2">
+                    <div
+                      class="flex cursor-pointer gap-2"
+                      on:click={() => {
+                        sort = { ...sort, name: (sort.name + 1) % 3 };
+                      }}
+                    >
                       <div>Name</div>
                       <Icon src={BarsArrowDown} class="size-5"></Icon>
                     </div>
@@ -45,7 +52,12 @@
                     scope="col"
                     class="sticky top-0 z-10 border-b border-gray-300 bg-white/75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
                   >
-                    <div class="flex cursor-pointer gap-2">
+                    <div
+                      class="flex cursor-pointer gap-2"
+                      on:click={() => {
+                        sort = { ...sort, status: (sort.status + 1) % 3 };
+                      }}
+                    >
                       <div>Status</div>
                       <Icon src={BarsArrowDown} class="size-5"></Icon>
                     </div>
@@ -54,7 +66,12 @@
                     scope="col"
                     class="sticky top-0 z-10 border-b border-gray-300 bg-white/75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
                   >
-                    <div class="flex cursor-pointer gap-2">
+                    <div
+                      class="flex cursor-pointer gap-2"
+                      on:click={() => {
+                        sort = { ...sort, limit: (sort.limit + 1) % 3 };
+                      }}
+                    >
                       <div>Limit</div>
                       <Icon src={BarsArrowDown} class="size-5"></Icon>
                     </div>
