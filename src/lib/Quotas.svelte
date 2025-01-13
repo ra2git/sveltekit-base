@@ -4,7 +4,11 @@
   import SortIcon from "./SortIcon.svelte";
   import Fuse from "fuse.js";
 
-  let sort = $state<Record<string, number>>({ name: 0, status: 0, limit: 0 });
+  let sort = $state<Record<string, number>>({
+    name: 0,
+    is_enabled: 0,
+    limit: 0,
+  });
   let data = $state(exampleData);
   let search = $state("");
 
@@ -93,7 +97,7 @@
                       type="button"
                       class="flex cursor-pointer gap-2"
                       onclick={handleClick}
-                      name="status"
+                      name="is_enabled"
                     >
                       <span>Status</span>
                       <SortIcon direction={sort.status}></SortIcon>
