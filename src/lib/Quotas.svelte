@@ -38,43 +38,46 @@
                     scope="col"
                     class="sticky top-0 z-10 border-b border-gray-300 bg-white/75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
                   >
-                    <div
+                    <button
+                      type="button"
                       class="flex cursor-pointer gap-2"
                       onclick={() => {
                         sort = { ...sort, name: (sort.name + 1) % 3 };
                       }}
                     >
-                      <div>Name</div>
+                      <span>Name</span>
                       <SortIcon direction={sort.name}></SortIcon>
-                    </div>
+                    </button>
                   </th>
                   <th
                     scope="col"
                     class="sticky top-0 z-10 border-b border-gray-300 bg-white/75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
                   >
-                    <div
+                    <button
+                      type="button"
                       class="flex cursor-pointer gap-2"
                       onclick={() => {
                         sort = { ...sort, status: (sort.status + 1) % 3 };
                       }}
                     >
-                      <div>Status</div>
+                      <span>Status</span>
                       <SortIcon direction={sort.status}></SortIcon>
-                    </div>
+                    </button>
                   </th>
                   <th
                     scope="col"
                     class="sticky top-0 z-10 border-b border-gray-300 bg-white/75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
                   >
-                    <div
+                    <button
+                      type="button"
                       class="flex cursor-pointer gap-2"
                       onclick={() => {
                         sort = { ...sort, limit: (sort.limit + 1) % 3 };
                       }}
                     >
-                      <div>Limit</div>
+                      <span>Limit</span>
                       <SortIcon direction={sort.limit}></SortIcon>
-                    </div>
+                    </button>
                   </th>
                 </tr>
               </thead>
