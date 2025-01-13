@@ -13,7 +13,7 @@
 
   const handleSearch = (event: Event) => {
     const { value: search } = event.target as HTMLInputElement;
-    data = filterData(exampleData, search);
+    data = sortData(filterData(exampleData, search), sort);
   };
 
   const handleSort = (event: Event) => {
