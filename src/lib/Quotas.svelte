@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { orderBy } from "lodash-es";
   import exampleData from "../data/quotas.json";
   import SortIcon from "./SortIcon.svelte";
   import Fuse from "fuse.js";
+  import { sortData } from "./utils";
 
   let sort = $state<Record<string, number>>({
     name: 0,
@@ -28,20 +28,7 @@
   const handleClick = (event: Event) => {
     const { name } = event.currentTarget as HTMLButtonElement;
     sort = { ...sort, [name]: (sort[name] + 1) % 3 };
-    const keys = Object.entries(sort)
-      .filter(([, value]) => {
-        return value > 0;
-      })
-      .map(([key]) => {
-        return key;
-      });
-    data = orderBy(
-      data,
-      keys,
-      keys.map((ele) => {
-        return sort[ele] === 1 ? "asc" : "desc";
-      }),
-    );
+    data = sortData(data, sort);
   };
 </script>
 
