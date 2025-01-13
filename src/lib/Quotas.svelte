@@ -1,8 +1,7 @@
 <script lang="ts">
   import exampleData from "../data/quotas.json";
   import SortIcon from "./SortIcon.svelte";
-  import Fuse from "fuse.js";
-  import { sortData } from "./utils";
+  import { filterData, sortData } from "./utils";
 
   let sort = $state<Record<string, number>>({
     name: 0,
@@ -12,17 +11,10 @@
   let data = $state(exampleData);
   let search = $state("");
 
-  const fuse = new Fuse(exampleData, { keys: ["name"] });
-
   const handleSearch = (event: Event) => {
     const target = event.target as HTMLInputElement;
     search = target.value;
-    data =
-      search === ""
-        ? exampleData
-        : fuse.search(search).map((ele) => {
-            return ele.item;
-          });
+    data = filterData(exampleData, search);
   };
 
   const handleClick = (event: Event) => {

@@ -1,4 +1,5 @@
 import { orderBy } from "lodash-es";
+import Fuse from "fuse.js";
 
 export interface Quota {
     name: string;
@@ -24,4 +25,13 @@ export function sortData(data: Quota[], sort: Record<string, number>): Quota[] {
         }),
     );
     return output;
+}
+
+export function filterData(input: Quota[], query: string): Quota[] {
+    const fuse = new Fuse(input, { keys: ["name"] });
+    return query === ""
+        ? input
+        : fuse.search(query).map((ele) => {
+            return ele.item;
+        });
 }
