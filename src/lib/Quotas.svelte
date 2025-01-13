@@ -5,6 +5,11 @@
   let sort = $state({ name: 0, status: 0, limit: 0 });
   let data = $state(exampleData);
   let search = $state("");
+
+  const handleSearch = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    search = target.value;
+  };
 </script>
 
 <div class="overflow-hidden rounded-lg bg-white shadow">
@@ -19,6 +24,7 @@
           id="search"
           placeholder="Search..."
           value={search}
+          oninput={handleSearch}
           class="block min-w-0 grow rounded-s-md border-gray-300 px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6"
         />
         <div class="flex p-1.5">
