@@ -1,7 +1,6 @@
-<script>
+<script lang="ts">
   import exampleData from "../data/quotas.json";
-  import { Icon } from "@steeze-ui/svelte-icon";
-  import { BarsArrowDown } from "@steeze-ui/heroicons";
+  import SortIcon from "./SortIcon.svelte";
 
   let sort = $state({ name: 0, status: 0, limit: 0 });
 </script>
@@ -45,7 +44,7 @@
                       }}
                     >
                       <div>Name</div>
-                      <Icon src={BarsArrowDown} class="size-5"></Icon>
+                      <SortIcon direction={sort.name}></SortIcon>
                     </div>
                   </th>
                   <th
@@ -59,7 +58,7 @@
                       }}
                     >
                       <div>Status</div>
-                      <Icon src={BarsArrowDown} class="size-5"></Icon>
+                      <SortIcon direction={sort.status}></SortIcon>
                     </div>
                   </th>
                   <th
@@ -73,7 +72,7 @@
                       }}
                     >
                       <div>Limit</div>
-                      <Icon src={BarsArrowDown} class="size-5"></Icon>
+                      <SortIcon direction={sort.limit}></SortIcon>
                     </div>
                   </th>
                 </tr>
