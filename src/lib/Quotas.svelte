@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { orderBy } from "lodash-es";
   import exampleData from "../data/quotas.json";
   import SortIcon from "./SortIcon.svelte";
   import Fuse from "fuse.js";
 
-  let sort = $state({ name: 0, status: 0, limit: 0 });
+  let sort = $state<Record<string, number>>({ name: 0, status: 0, limit: 0 });
   let data = $state(exampleData);
   let search = $state("");
 
@@ -18,6 +19,25 @@
         : fuse.search(search).map((ele) => {
             return ele.item;
           });
+  };
+
+  const handleClick = (event: Event) => {
+    const { name } = event.currentTarget as HTMLButtonElement;
+    sort = { ...sort, [name]: (sort[name] + 1) % 3 };
+    const keys = Object.entries(sort)
+      .filter(([, value]) => {
+        return value > 0;
+      })
+      .map(([key]) => {
+        return key;
+      });
+    data = orderBy(
+      data,
+      keys,
+      keys.map((ele) => {
+        return sort[ele] === 1 ? "asc" : "desc";
+      }),
+    );
   };
 </script>
 
@@ -58,9 +78,8 @@
                     <button
                       type="button"
                       class="flex cursor-pointer gap-2"
-                      onclick={() => {
-                        sort = { ...sort, name: (sort.name + 1) % 3 };
-                      }}
+                      onclick={handleClick}
+                      name="name"
                     >
                       <span>Name</span>
                       <SortIcon direction={sort.name}></SortIcon>
@@ -73,9 +92,8 @@
                     <button
                       type="button"
                       class="flex cursor-pointer gap-2"
-                      onclick={() => {
-                        sort = { ...sort, status: (sort.status + 1) % 3 };
-                      }}
+                      onclick={handleClick}
+                      name="status"
                     >
                       <span>Status</span>
                       <SortIcon direction={sort.status}></SortIcon>
@@ -88,9 +106,8 @@
                     <button
                       type="button"
                       class="flex cursor-pointer gap-2"
-                      onclick={() => {
-                        sort = { ...sort, limit: (sort.limit + 1) % 3 };
-                      }}
+                      onclick={handleClick}
+                      name="limit"
                     >
                       <span>Limit</span>
                       <SortIcon direction={sort.limit}></SortIcon>
