@@ -1,31 +1,39 @@
 <script lang="ts">
-  import exampleData from "../data/quotas.json";
   import SortIcon from "./SortIcon.svelte";
   import RowSkeleton from "./RowSkeleton.svelte";
-  import { filterData, sortData } from "./utils";
+  import { fetchQuotas, filterData, sortData } from "./utils";
+  import type { Quota } from "./utils";
+  import { onMount } from "svelte";
 
   let sort = $state<Record<string, number>>({
     name: 0,
     is_enabled: 0,
     limit: 0,
   });
-  let data = $state(exampleData);
+  let original = $state<Quota[]>([]);
   let search = $state("");
   let loading = $state(true);
 
-  setTimeout(() => {
-    loading = false;
-  }, 3000);
+  let data = $derived.by<Quota[]>(() => {
+    return sortData(filterData(original, search), sort);
+  });
+
+  onMount(() => {
+    loading = true;
+    fetchQuotas().then((response) => {
+      original = response;
+      loading = false;
+    });
+  });
 
   const handleSearch = (event: Event) => {
-    const { value: search } = event.target as HTMLInputElement;
-    data = sortData(filterData(exampleData, search), sort);
+    const { value } = event.target as HTMLInputElement;
+    search = value;
   };
 
   const handleSort = (event: Event) => {
     const { name } = event.currentTarget as HTMLButtonElement;
     sort = { ...sort, [name]: (sort[name] + 1) % 3 };
-    data = sortData(data, sort);
   };
 </script>
 

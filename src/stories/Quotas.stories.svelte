@@ -9,5 +9,4 @@
   });
 </script>
 
-<!-- Example table with default styling from tailwind and light branding -->
 <Story name="Primary" />

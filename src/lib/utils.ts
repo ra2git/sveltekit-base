@@ -1,5 +1,6 @@
 import { orderBy } from "lodash-es";
 import Fuse from "fuse.js";
+import data from "../data/quotas.json";
 
 export interface Quota {
     name: string;
@@ -34,4 +35,13 @@ export function filterData(input: Quota[], query: string): Quota[] {
         : fuse.search(query).map((ele) => {
             return ele.item;
         });
+}
+
+export async function fetchQuotas(): Promise<Quota[]> {
+    const output = new Promise<Quota[]>((resolve) => {
+        setTimeout(() => {
+            resolve(data);
+        }, 3000);
+    });
+    return output;
 }
