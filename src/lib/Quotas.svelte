@@ -19,7 +19,7 @@
     return sortData(filterData(original, search), sort);
   });
 
-  onMount(() => {
+  $effect(() => {
     loading = true;
     fetchQuotas().then((response) => {
       original = response;
