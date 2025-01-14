@@ -5,13 +5,14 @@
   import type { Quota } from "./utils";
   import { onMount } from "svelte";
 
+  let original = $state<Quota[]>([]);
+  let search = $state("");
   let sort = $state<Record<string, number>>({
     name: 0,
     is_enabled: 0,
     limit: 0,
   });
-  let original = $state<Quota[]>([]);
-  let search = $state("");
+
   let loading = $state(true);
 
   let data = $derived.by<Quota[]>(() => {
@@ -112,10 +113,12 @@
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-                {#each data as quota}
-                  {#if loading === true}
-                    <RowSkeleton id={quota.id}></RowSkeleton>
-                  {:else}
+                {#if loading === true}
+                  {#each { length: 10 }}
+                    <RowSkeleton></RowSkeleton>
+                  {/each}
+                {:else}
+                  {#each data as quota}
                     <tr id={quota.id}>
                       <td
                         class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500"
@@ -143,8 +146,8 @@
                         >{quota.limit}</td
                       >
                     </tr>
-                  {/if}
-                {/each}
+                  {/each}
+                {/if}
               </tbody>
             </table>
           </div>
