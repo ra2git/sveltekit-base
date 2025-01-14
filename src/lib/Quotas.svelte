@@ -3,7 +3,6 @@
   import RowSkeleton from "./RowSkeleton.svelte";
   import { fetchQuotas, filterData, sortData } from "./utils";
   import type { Quota } from "./utils";
-  import { onMount } from "svelte";
 
   let original = $state<Quota[]>([]);
   let search = $state("");
