@@ -1,6 +1,7 @@
 <script lang="ts">
   import exampleData from "../data/quotas.json";
   import SortIcon from "./SortIcon.svelte";
+  import RowSkeleton from "./RowSkeleton.svelte";
   import { filterData, sortData } from "./utils";
 
   let sort = $state<Record<string, number>>({
@@ -104,33 +105,37 @@
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
                 {#each data as quota}
-                  <tr id={quota.id}>
-                    <td
-                      class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500"
-                      >{quota.name}</td
-                    >
-                    <td
-                      class="whitespace-nowrap pl-4 pr-3 text-sm font-medium text-gray-500"
-                    >
-                      {#if quota.is_enabled}
-                        <span
-                          class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800"
-                        >
-                          Enabled
-                        </span>
-                      {:else}
-                        <span
-                          class="inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800"
-                        >
-                          Disabled
-                        </span>
-                      {/if}
-                    </td>
-                    <td
-                      class="whitespace-nowrap pl-4 pr-3 text-sm text-gray-500"
-                      >{quota.limit}</td
-                    >
-                  </tr>
+                  {#if loading === true}
+                    <RowSkeleton id={quota.id}></RowSkeleton>
+                  {:else}
+                    <tr id={quota.id}>
+                      <td
+                        class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500"
+                        >{quota.name}</td
+                      >
+                      <td
+                        class="whitespace-nowrap pl-4 pr-3 text-sm font-medium text-gray-500"
+                      >
+                        {#if quota.is_enabled}
+                          <span
+                            class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800"
+                          >
+                            Enabled
+                          </span>
+                        {:else}
+                          <span
+                            class="inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800"
+                          >
+                            Disabled
+                          </span>
+                        {/if}
+                      </td>
+                      <td
+                        class="whitespace-nowrap pl-4 pr-3 text-sm text-gray-500"
+                        >{quota.limit}</td
+                      >
+                    </tr>
+                  {/if}
                 {/each}
               </tbody>
             </table>
