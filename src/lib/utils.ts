@@ -37,9 +37,10 @@ export function filterData(input: Quota[], query: string): Quota[] {
         });
 }
 
-export async function fetchQuotas(): Promise<Quota[]> {
+export async function fetchQuotas(projectID: string): Promise<Quota[]> {
     const output = new Promise<Quota[]>((resolve) => {
         setTimeout(() => {
+            console.log(projectID);
             resolve(data);
         }, 3000);
     });

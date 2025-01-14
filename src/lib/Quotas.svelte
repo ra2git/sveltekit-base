@@ -21,7 +21,7 @@
 
   $effect(() => {
     loading = true;
-    fetchQuotas().then((response) => {
+    fetchQuotas("some-id").then((response) => {
       original = response;
       loading = false;
     });
