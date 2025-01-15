@@ -118,6 +118,12 @@
                       <SortIcon direction={sort.limit}></SortIcon>
                     </button>
                   </th>
+                  <th
+                    scope="col"
+                    class="sticky top-0 z-10 border-b border-gray-300 bg-white/75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
+                  >
+                    Edit
+                  </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
@@ -160,6 +166,10 @@
                       <td
                         class="whitespace-nowrap pl-4 pr-3 text-sm text-gray-500"
                         >{quota.limit}</td
+                      >
+                      <td
+                        class="whitespace-nowrap pl-4 pr-3 text-sm text-gray-500"
+                        >Edit</td
                       >
                     </tr>
                   {/each}
