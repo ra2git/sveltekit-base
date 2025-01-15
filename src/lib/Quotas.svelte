@@ -71,6 +71,15 @@
                     scope="col"
                     class="sticky top-0 z-10 border-b border-gray-300 bg-white/75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
                   >
+                    <input
+                      type="checkbox"
+                      class="cursor-pointer rounded border-gray-300 bg-gray-100 focus:ring-2 focus:ring-blue-500"
+                    />
+                  </th>
+                  <th
+                    scope="col"
+                    class="sticky top-0 z-10 border-b border-gray-300 bg-white/75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
+                  >
                     <button
                       type="button"
                       class="flex cursor-pointer gap-2"
@@ -119,6 +128,14 @@
                 {:else}
                   {#each data as quota}
                     <tr id={quota.id}>
+                      <td
+                        class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500"
+                      >
+                        <input
+                          type="checkbox"
+                          class="cursor-pointer rounded border-gray-300 bg-gray-100 focus:ring-2 focus:ring-blue-500"
+                        />
+                      </td>
                       <td
                         class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500"
                         >{quota.name}</td
